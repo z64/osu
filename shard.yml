@@ -1,0 +1,14 @@
+name: osu
+version: 0.1.0
+
+authors:
+  - z64 <zachnowicki@gmail.com>
+
+crystal: 0.20.5
+
+license: MIT
+
+dependencies:
+  cossack:
+    github: greyblake/crystal-cossack
+    version: ~> 0.1
