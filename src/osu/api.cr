@@ -22,7 +22,7 @@ module Osu
         string_params = Cossack::Params.new
         params.each { |k, v| string_params[k] = "#{v}" }
 
-        response = CLIENT.get "get_{{route}}", string_params
+        response = CLIENT.get "get_{{route}}", string_params.compact
 
         {% if single %}
           response.body[1..-2]
