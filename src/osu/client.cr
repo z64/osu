@@ -15,7 +15,7 @@ module Osu
 
       User.from_json API.user(
         @key,
-        user_hash.merge({"m" => mode, "event_days" => event_days}).compact
+        user_hash.merge({"m" => mode, "event_days" => event_days})
       )
     end
   end
