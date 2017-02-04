@@ -19,6 +19,17 @@ module Osu
       count_rank_a:    {type: UInt32, converter: UInt32Converter},
       country:         String,
       pp_country_rank: {type: UInt32, converter: UInt32Converter},
-    }, false)
+      events:          Array(Event),
+    })
+  end
+
+  class Event
+    JSON.mapping({
+      display_html:  String,
+      beatmap_id:    {type: UInt32, converter: UInt32Converter},
+      beatmapset_id: {type: UInt32, converter: UInt32Converter},
+      date:          String,
+      epicfactor:    {type: UInt16, converter: UInt16Converter},
+    })
   end
 end
