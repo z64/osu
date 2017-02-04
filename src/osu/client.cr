@@ -10,7 +10,8 @@ module Osu
     def initialize(@key)
     end
 
-    def user(id : String | Int32, mode : Int32? = nil, event_days : Int32? = nil)
+    # Request a single user object for a given game mode
+    def user(id : String | Int32, mode : Int32? = 0, event_days : Int32? = nil)
       user_hash = Helper.user(id)
 
       User.from_json API.user(
