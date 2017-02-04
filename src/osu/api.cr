@@ -16,7 +16,7 @@ module Osu
     # This is useful for endpoints that *should* only ever return a
     # single object, but ship inside an array anyways.
     macro get(route, single = false)
-      def {{route}}(key : String, params : Hash(String, String | Int32)) : String
+      def {{route}}(key : String, params : Hash(String, String | Int32 | Nil)) : String
         params["k"] = key
 
         string_params = Cossack::Params.new
