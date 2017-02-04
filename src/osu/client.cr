@@ -18,5 +18,14 @@ module Osu
         user_hash.merge({"m" => mode, "event_days" => event_days})
       )
     end
+
+    # Asynchronously loads user stats for multiple game modes.
+    def user(id : String | Int32, mode : Array(Int32), event_days : Int32? = nil) : Array(User)
+      futures = [] of Concurrent::Future(User)
+
+      mode.each { |m| futures << future { user(id, m, event_days) } }
+
+      futures.map { |f| f.get }
+    end
   end
 end
