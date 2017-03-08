@@ -4,6 +4,7 @@ module Osu
   module API
     # Symbol to String table for decoding
     # user-friendly hash constructor arguments
+    # for HTTP parameters
     Parameters = {
       :key        => "k",
       :user       => "u",
