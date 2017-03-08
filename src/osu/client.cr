@@ -12,7 +12,7 @@ module Osu
     end
 
     # Request a single user object for a given game mode
-    def user(id : String | Int32, mode : Int32? = 0, event_days : Int32? = nil)
+    def user(id : String | Int32, mode : Int32 | Symbol = 0, event_days : Int32? = nil)
       User.from_json API.user(
         @key,
         API::RequestParameters{
