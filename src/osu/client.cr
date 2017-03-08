@@ -1,4 +1,5 @@
 require "json"
+require "string_converter"
 require "./mappings/*"
 
 module Osu
