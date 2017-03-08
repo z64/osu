@@ -36,7 +36,8 @@ module Osu
       }
 
       # Convert bits from the API into a readable
-      # list of the mods applied.
+      # list of the mods applied. If `stringify` is `true`,
+      # it will return an array of "prettified" strings instead.
       def mods(bits : Int32, stringify = false)
         return stringify ? ["None"] : [:none] if bits == 0
 
