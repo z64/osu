@@ -12,7 +12,7 @@ module Osu
       }
 
       # Get a game mode ID with a symbol
-      def mode(index : Symbol)
+      def mode(name : Symbol)
         Modes[index]
       end
 
