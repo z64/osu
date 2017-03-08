@@ -21,6 +21,16 @@ module Osu
       pp_country_rank: {type: UInt32?, converter: StringConverter::UInt32},
       events:          Array(Event),
     })
+
+    # URL to this user's profile
+    def profile_url
+      "#{API::BASE_URL}/u/#{user_id}"
+    end
+
+    # URL to this user's avatar
+    def profile_url
+      "#{API::BASE_URL}/a/#{user_id}"
+    end
   end
 
   class Event
