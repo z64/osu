@@ -6,14 +6,18 @@ module Osu
     # user-friendly hash constructor arguments
     # for HTTP parameters
     Parameters = {
-      :key        => "k",
-      :user       => "u",
-      :beatmap    => "b",
-      :mode       => "m",
-      :event_days => "event_days",
-      :type       => "type",
-      :mods       => "mods",
-      :limit      => "limit",
+      :key            => "k",
+      :user           => "u",
+      :beatmap        => "b",
+      :mode           => "m",
+      :event_days     => "event_days",
+      :type           => "type",
+      :mods           => "mods",
+      :limit          => "limit",
+      :converted_maps => "a",
+      :hash           => "h",
+      :since          => "since",
+      :match_id       => "mp",
     }
 
     # An object that constructs a querystring ah that can be passed
