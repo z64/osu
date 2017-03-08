@@ -12,3 +12,6 @@ dependencies:
   cossack:
     github: greyblake/crystal-cossack
     version: ~> 0.1
+  string_converter:
+    github: z64/string_converter
+    branch: master
