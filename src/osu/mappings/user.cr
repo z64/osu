@@ -1,6 +1,6 @@
 module Osu
   # An Osu user
-  class User
+  struct User
     JSON.mapping({
       user_id:         {type: UInt32?, converter: StringConverter::UInt32},
       username:        String,
@@ -33,7 +33,7 @@ module Osu
     end
   end
 
-  class Event
+  struct Event
     JSON.mapping({
       display_html:  String,
       beatmap_id:    {type: UInt32?, converter: StringConverter::UInt32},
