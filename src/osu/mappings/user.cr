@@ -28,7 +28,7 @@ module Osu
     end
 
     # URL to this user's avatar
-    def profile_url
+    def avatar_url
       "#{API::BASE_URL}/a/#{user_id}"
     end
   end
