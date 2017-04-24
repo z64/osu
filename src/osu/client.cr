@@ -12,7 +12,7 @@ module Osu
     end
 
     # Request a single user object for a given game mode
-    def user(id : String | Int32, mode : Int32 | Symbol = 0, event_days : Int32? = nil)
+    def user(id : String | Int32, mode : API::Mode, event_days : Int32? = nil)
       User.from_json API.user(
         @key,
         API::RequestParameters{
@@ -24,12 +24,14 @@ module Osu
     end
 
     # Asynchronously loads user stats for multiple game modes.
-    def user(id : String | Int32, mode : Array(Int32), event_days : Int32? = nil) : Array(User)
-      futures = [] of Concurrent::Future(User)
+    def user(id : String | Int32, mode : Array(API::Mode), event_days : Int32? = nil)
+      channel = Channel(User).new
 
-      mode.each { |m| futures << future { user(id, m, event_days) } }
+      mode.each do |m|
+        spawn { channel.send user(id, m, event_days) }
+      end
 
-      futures.map { |f| f.get }
+      mode.map { |e| channel.receive }
     end
   end
 end
