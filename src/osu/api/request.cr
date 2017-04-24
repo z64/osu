@@ -47,8 +47,8 @@ module Osu
                             end
         when :mods
           value = Mods.bits value if value.is_a?(Array(Symbol))
-        when :mode
-          value = Mode.mode value if value.is_a?(Symbol)
+          # when :mode
+          #   value = Mode.mode value if value.is_a?(Symbol)
         end
 
         parameter = if key.is_a?(Symbol)
