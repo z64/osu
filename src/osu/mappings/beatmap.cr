@@ -41,6 +41,11 @@ module Osu
         @difficultyrating
       )
     end
+
+    # URL to this beatmap
+    def url
+      "#{API::BASE_URL}/b/#{id}"
+    end
   end
 
   # Record representing a beatmap's difficulty properties
