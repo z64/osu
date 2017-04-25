@@ -50,7 +50,7 @@ module Osu
 
     # Asynchronously loads user stats for multiple game modes.
     def user(id : UserID, mode : Array(API::Mode), event_days : Int32? = nil)
-      channel = Channel(User).new
+      channel = Channel(User?).new
 
       mode.each do |m|
         spawn { channel.send user(id, m, event_days) }
