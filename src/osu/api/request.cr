@@ -9,6 +9,7 @@ module Osu
       :key            => "k",
       :user           => "u",
       :beatmap        => "b",
+      :set            => "s",
       :mode           => "m",
       :event_days     => "event_days",
       :type           => "type",
