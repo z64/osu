@@ -34,7 +34,7 @@ module Osu
       mode.map { |e| channel.receive }
     end
 
-    # Get a beatmap object
+    # Get a beatmap object by ID
     def beatmap(id : Int32, mode : API::Mode? = nil)
       response = API.beatmaps(
         @key,
