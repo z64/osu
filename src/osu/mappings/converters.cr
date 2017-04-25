@@ -1,8 +1,8 @@
 require "string_converter"
 
 module Osu
-  # :nodoc:
   macro offset_enum_converter(kind, offset)
+    # :nodoc:
     struct {{kind.id}}Converter
       def self.from_json(parser)
         index = Int32.new parser.read_string
