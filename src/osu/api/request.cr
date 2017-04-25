@@ -45,9 +45,7 @@ module Osu
                             else
                               "id"
                             end
-          # when :mods
-          #  value = Mods.bits value if value.is_a?(Array(Symbol))
-        when :mode
+        when :mods || :mode
           value = value.to_i.to_s
         end
 
