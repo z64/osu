@@ -77,5 +77,17 @@ module Osu
 
       objects
     end
+
+    # Obtain a collection of beatmaps under a set
+    def beatmap_set(id : Int32)
+      response = API.beatmaps(
+        @key,
+        API::RequestParameters{
+          :set => id,
+        }.params
+      )
+
+      BeatmapSet.from_json response
+    end
   end
 end
