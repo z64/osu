@@ -47,5 +47,25 @@ module Osu
       return if response == "[]"
       Beatmap.from_json response[1..-2]
     end
+
+    # Look up beatmaps with certain criteria
+    def beatmaps(user : String | Int32, mode : API::Mode? = nil, limit : Int32 = 500)
+      response = API.beatmaps(
+        @key,
+        API::RequestParameters{
+          :user  => user,
+          :mode  => mode,
+          :limit => limit,
+        }.params
+      )
+
+      objects = [] of Beatmap
+      parser = JSON::PullParser.new(response)
+      parser.read_array do
+        objects << Beatmap.from_json(parser.read_raw)
+      end
+
+      objects
+    end
   end
 end
