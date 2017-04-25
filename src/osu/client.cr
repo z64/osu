@@ -12,7 +12,7 @@ module Osu
     end
 
     # Request a single user object for a given game mode
-    def user(id : String | Int32, mode : API::Mode, event_days : Int32? = nil)
+    def user(id : String | Int32, mode : API::Mode = API::Mode::Standard, event_days : Int32? = nil)
       User.from_json API.user(
         @key,
         API::RequestParameters{
@@ -32,6 +32,18 @@ module Osu
       end
 
       mode.map { |e| channel.receive }
+    end
+
+    # Get a beatmap object
+    def beatmap(id : Int32, mode : API::Mode? = nil)
+      response = API.beatmaps(
+        @key,
+        API::RequestParameters{
+          :beatmap => id,
+        }.params
+      )
+
+      return nil if response.empty?
     end
   end
 end
