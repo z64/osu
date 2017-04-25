@@ -11,6 +11,7 @@ module Osu
   # An implementation of Osu::API to request and serve
   # data objects from the API in a useful way
   class Client
+    # API key
     getter key : String
 
     def initialize(@key)
