@@ -43,7 +43,8 @@ module Osu
         }.params
       )
 
-      return nil if response.empty?
+      return if response == "[]"
+      Beatmap.from_json response[1..-2]
     end
   end
 end
