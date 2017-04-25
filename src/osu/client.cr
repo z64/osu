@@ -9,6 +9,9 @@ module Osu
   # in the future. For now this retains future compatibility.
   alias Mode = API::Mode
 
+  # User ID union type
+  alias UserID = String | Int32
+
   # An implementation of Osu::API to request and serve
   # data objects from the API in a useful way
   class Client
@@ -19,7 +22,7 @@ module Osu
     end
 
     # Request a single user object for a given game mode
-    def user(id : String | Int32, mode : API::Mode = API::Mode::Standard, event_days : Int32? = nil)
+    def user(id : UserID, mode : API::Mode = API::Mode::Standard, event_days : Int32? = nil)
       User.from_json API.user(
         @key,
         API::RequestParameters{
@@ -31,7 +34,7 @@ module Osu
     end
 
     # Asynchronously loads user stats for multiple game modes.
-    def user(id : String | Int32, mode : Array(API::Mode), event_days : Int32? = nil)
+    def user(id : UserID, mode : Array(API::Mode), event_days : Int32? = nil)
       channel = Channel(User).new
 
       mode.each do |m|
