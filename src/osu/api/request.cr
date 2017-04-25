@@ -23,9 +23,7 @@ module Osu
     # An object that constructs a querystring ah that can be passed
     # to the API module.
     struct RequestParameters
-      def initialize
-        @params = {} of String => String
-      end
+      @params = {} of String => String
 
       def params
         @params.compact
