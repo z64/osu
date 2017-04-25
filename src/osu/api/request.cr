@@ -1,4 +1,4 @@
-require "./mods"
+require "./enum"
 
 module Osu
   module API
