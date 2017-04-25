@@ -3,6 +3,11 @@ require "./api"
 require "./mappings/*"
 
 module Osu
+  # Alias to API::Mode. Just removes some typing,
+  # I may move the enums out of the API namespace
+  # in the future. For now this retains future compatibility.
+  alias Mode = API::Mode
+
   # An implementation of Osu::API to request and serve
   # data objects from the API in a useful way
   class Client
