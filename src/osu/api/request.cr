@@ -43,8 +43,8 @@ module Osu
                             else
                               "id"
                             end
-        when :mods || :mode
-          value = value.to_i.to_s
+        when :mods && :mode
+          value = value.try &.to_i.to_s
         end
 
         parameter = if key.is_a?(Symbol)
