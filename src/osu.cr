@@ -1,4 +1,4 @@
-require "./osu/*"
+require "./osu/version"
 
 module Osu
 end
