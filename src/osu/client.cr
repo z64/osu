@@ -87,6 +87,8 @@ module Osu
         }.params
       )
 
+      return if response == "[]"
+
       BeatmapSet.from_json response
     end
   end
