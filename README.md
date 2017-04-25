@@ -37,7 +37,7 @@ stats = client.user(
 ) #=> Array(User)
 
 # Let's check out his ranks..
-puts user.map &.rank #=>
+puts stats.map &.rank #=>
 # [Osu::Rank(@pp=20722, @country=3054, @ss=160, @s=585, @a=572),
 #  Osu::Rank(@pp=46290, @country=3770, @ss=5, @s=129, @a=111)]
 
