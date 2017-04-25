@@ -34,7 +34,7 @@ module Osu
 
     # Request a single user object for a given game mode
     def user(id : UserID, mode : API::Mode = API::Mode::Standard, event_days : Int32? = nil)
-      User.from_json API.user(
+      response = API.user(
         @key,
         API::RequestParameters{
           :user       => id,
@@ -42,6 +42,10 @@ module Osu
           :event_days => event_days,
         }.params
       )
+
+      return if response.empty?
+
+      User.from_json response
     end
 
     # Asynchronously loads user stats for multiple game modes.
