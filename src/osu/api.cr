@@ -1,5 +1,4 @@
 require "cossack"
-require "./api/*"
 
 module Osu
   # This module provides an interface to Osu's REST API
