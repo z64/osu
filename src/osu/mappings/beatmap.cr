@@ -1,5 +1,3 @@
-require "string_converter"
-
 module Osu
   struct Beatmap
     JSON.mapping({
