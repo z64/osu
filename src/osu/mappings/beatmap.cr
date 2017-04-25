@@ -44,6 +44,11 @@ module Osu
     def url
       "#{API::BASE_URL}/b/#{id}"
     end
+
+    # URL to this beatmap's set
+    def beatmap_set_url
+      "#{API::BASE_URL}/b/#{beatmapset_id}"
+    end
   end
 
   # Record representing a beatmap's difficulty properties
