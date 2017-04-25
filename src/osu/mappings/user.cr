@@ -31,7 +31,28 @@ module Osu
     def avatar_url
       "#{API::BASE_URL}/a/#{user_id}"
     end
+
+    # This user's ranks, represented as a Rank struct.
+    def rank
+      @ranks ||= Rank.new(
+        @pp_rank,
+        @pp_country_rank,
+        @count_rank_ss,
+        @count_rank_s,
+        @count_rank_a
+      )
+    end
   end
+
+  # A record of user's ranks
+  record(
+    Rank,
+    pp : UInt32?,
+    country : UInt32?,
+    ss : UInt32?,
+    s : UInt32?,
+    a : UInt32?
+  )
 
   struct Event
     JSON.mapping({
