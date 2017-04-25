@@ -21,6 +21,17 @@ module Osu
     def initialize(@key)
     end
 
+    # :nodoc:
+    macro read_array(container, response, typ)
+      {{container}} = [] of {{typ}}
+      parser = JSON::PullParser.new({{response}})
+      parser.read_array do
+        {{container}} << {{typ}}.from_json(parser.read_raw)
+      end
+
+      {{container}}
+    end
+
     # Request a single user object for a given game mode
     def user(id : UserID, mode : API::Mode = API::Mode::Standard, event_days : Int32? = nil)
       User.from_json API.user(
@@ -43,6 +54,27 @@ module Osu
 
       mode.map { |e| channel.receive }
     end
+
+    {% for score in ["user_best", "user_recent"] %}
+      def {{score.id}}(user : UserID, mode : API::Mode = API::Mode::Standard, limit : Int32? = nil)
+        {% if score == "user_best" %}
+          response = API.user_best(
+        {% end %}
+        {% if score == "user_recent" %}
+          response = API.user_recent(
+        {% end %}
+          @key,
+          API::RequestParameters{
+            :user  => user,
+            :mode  => mode,
+            :limit => limit,
+          }.params
+        )
+
+        objects = [] of Score
+        read_array objects, response, Score
+      end
+    {% end %}
 
     # Get a beatmap object by ID
     def beatmap(id : Int32, mode : API::Mode? = nil)
@@ -70,12 +102,7 @@ module Osu
       )
 
       objects = [] of Beatmap
-      parser = JSON::PullParser.new(response)
-      parser.read_array do
-        objects << Beatmap.from_json(parser.read_raw)
-      end
-
-      objects
+      read_array objects, response, Beatmap
     end
 
     # Obtain a collection of beatmaps under a set
