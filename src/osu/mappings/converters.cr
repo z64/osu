@@ -13,12 +13,22 @@ module Osu
   end
 
   offset_enum_converter Mode, 0
+  offset_enum_converter Mod, 0
   offset_enum_converter Approval, 2
 
   # :nodoc:
   struct TagsConverter
     def self.from_json(parser)
       parser.read_string.split " "
+    end
+  end
+
+  # :nodoc:
+  struct PerfectConverter
+    def self.from_json(parser)
+      value = parser.read_string
+
+      value == "true" ? true : false
     end
   end
 end
