@@ -1,7 +1,7 @@
 require "json"
 require "./api"
 require "./api/*"
-require "./mappings/*"
+require "./mappings"
 
 module Osu
   # Alias to API::Mode. Just removes some typing,

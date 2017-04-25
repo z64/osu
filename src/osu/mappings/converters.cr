@@ -1,5 +1,3 @@
-require "string_converter"
-
 module Osu
   macro offset_enum_converter(kind, offset)
     # :nodoc:

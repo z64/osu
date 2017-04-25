@@ -1,5 +1,3 @@
-require "./beatmap"
-
 module Osu
   struct BeatmapSet
     # ID of the beatmap set
