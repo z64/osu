@@ -1,5 +1,6 @@
 require "json"
 require "./api"
+require "./api/*"
 require "./mappings/*"
 
 module Osu
