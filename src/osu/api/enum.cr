@@ -42,7 +42,6 @@ module Osu
     end
 
     # A Beatmap's approval level
-    @[Flags]
     enum Approval
       Graveyard
       Wip
