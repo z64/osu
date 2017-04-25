@@ -40,5 +40,17 @@ module Osu
       Key3
       Key2
     end
+
+    # A Beatmap's approval level
+    @[Flags]
+    enum Approval
+      Graveyard
+      Wip
+      Pending
+      Ranked
+      Approved
+      Qualified
+      Loved
+    end
   end
 end
