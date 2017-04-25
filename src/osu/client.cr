@@ -40,6 +40,7 @@ module Osu
         @key,
         API::RequestParameters{
           :beatmap => id,
+          :mode    => mode,
         }.params
       )
 
