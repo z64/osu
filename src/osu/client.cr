@@ -59,7 +59,7 @@ module Osu
     end
 
     # Look up beatmaps with certain criteria
-    def beatmaps(user : String | Int32, mode : API::Mode? = nil, limit : Int32? = nil)
+    def beatmaps(user : UserID? = nil, mode : API::Mode? = nil, limit : Int32? = nil)
       response = API.beatmaps(
         @key,
         API::RequestParameters{
