@@ -15,7 +15,7 @@ module Osu
       diff_approach:    {type: Float64?, converter: StringConverter::Float64, getter: false, setter: false},
       diff_drain:       {type: UInt32?, converter: StringConverter::UInt32, getter: false, setter: false},
       mode:             {type: API::Mode, converter: ModeConverter},
-      approved_date:    String,
+      approved_date:    String?,
       last_update:      String,
       artist:           String,
       title:            String,
