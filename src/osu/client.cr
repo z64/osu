@@ -79,7 +79,7 @@ module Osu
       end
 
       results = Results.new
-      mode.size.times do
+      mode.each do
         data = channel.receive
         results[data[0]] = data[1]
       end
