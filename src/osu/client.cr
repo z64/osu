@@ -89,12 +89,7 @@ module Osu
 
     {% for score in ["user_best", "user_recent"] %}
       def {{score.id}}(user : UserID, mode : Mode = Mode::Standard, limit : Int32? = nil)
-        {% if score == "user_best" %}
-          response = API.user_best(
-        {% end %}
-        {% if score == "user_recent" %}
-          response = API.user_recent(
-        {% end %}
+        response = API.{{score.id}}(
           @key,
           API::RequestParameters{
             :user  => user,
