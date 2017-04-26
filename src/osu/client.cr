@@ -33,7 +33,7 @@ module Osu
     end
 
     # Request a single user object for a given game mode
-    def user(id : UserID, mode : API::Mode = API::Mode::Standard, event_days : Int32? = nil)
+    def user(id : UserID, mode : Mode = Mode::Standard, event_days : Int32? = nil)
       response = API.user(
         @key,
         API::RequestParameters{
@@ -51,28 +51,28 @@ module Osu
     # A struct that makes navigating the results of requesting
     # multiple User objects at once easy to navigate.
     struct Results
-      property all = {} of API::Mode => User?
+      property all = {} of Mode => User?
 
-      def [](mode : API::Mode)
+      def [](mode : Mode)
         all[mode]
       rescue KeyError
         nil
       end
 
-      def []=(mode : API::Mode, user : User?)
+      def []=(mode : Mode, user : User?)
         all[mode] = user
       end
 
       {% for mode in ["standard", "taiko", "ctb", "mania"] %}
         def {{mode.id}}
-          self[API::Mode::{{mode.capitalize.id}}]
+          self[Mode::{{mode.capitalize.id}}]
         end
       {% end %}
     end
 
     # Asynchronously loads user stats for multiple game modes.
-    def user(id : UserID, mode : Array(API::Mode), event_days : Int32? = nil)
-      channel = Channel({API::Mode, User?}).new
+    def user(id : UserID, mode : Array(Mode), event_days : Int32? = nil)
+      channel = Channel({Mode, User?}).new
 
       mode.each do |m|
         spawn { channel.send({m, user(id, m, event_days)}) }
@@ -88,7 +88,7 @@ module Osu
     end
 
     {% for score in ["user_best", "user_recent"] %}
-      def {{score.id}}(user : UserID, mode : API::Mode = API::Mode::Standard, limit : Int32? = nil)
+      def {{score.id}}(user : UserID, mode : Mode = Mode::Standard, limit : Int32? = nil)
         {% if score == "user_best" %}
           response = API.user_best(
         {% end %}
@@ -109,7 +109,7 @@ module Osu
     {% end %}
 
     # Get a beatmap object by ID
-    def beatmap(id : Int32, mode : API::Mode? = nil)
+    def beatmap(id : Int32, mode : Mode? = nil)
       response = API.beatmaps(
         @key,
         API::RequestParameters{
@@ -123,7 +123,7 @@ module Osu
     end
 
     # Look up beatmaps with certain criteria
-    def beatmaps(user : UserID? = nil, mode : API::Mode? = nil, limit : Int32? = nil)
+    def beatmaps(user : UserID? = nil, mode : Mode? = nil, limit : Int32? = nil)
       response = API.beatmaps(
         @key,
         API::RequestParameters{
