@@ -48,15 +48,43 @@ module Osu
       User.from_json response
     end
 
-    # Asynchronously loads user stats for multiple game modes.
-    def user(id : UserID, mode : Array(API::Mode), event_days : Int32? = nil)
-      channel = Channel(User?).new
+    # A struct that makes navigating the results of requesting
+    # multiple User objects at once easy to navigate.
+    struct Results
+      property all = {} of API::Mode => User?
 
-      mode.each do |m|
-        spawn { channel.send user(id, m, event_days) }
+      def [](mode : API::Mode)
+        all[mode]
+      rescue KeyError
+        nil
       end
 
-      mode.map { |e| channel.receive }
+      def []=(mode : API::Mode, user : User?)
+        all[mode] = user
+      end
+
+      {% for mode in ["standard", "taiko", "ctb", "mania"] %}
+        def {{mode.id}}
+          self[API::Mode::{{mode.capitalize.id}}]
+        end
+      {% end %}
+    end
+
+    # Asynchronously loads user stats for multiple game modes.
+    def user(id : UserID, mode : Array(API::Mode), event_days : Int32? = nil)
+      channel = Channel({API::Mode, User?}).new
+
+      mode.each do |m|
+        spawn { channel.send({m, user(id, m, event_days)}) }
+      end
+
+      results = Results.new
+      mode.size.times do
+        data = channel.receive
+        results[data[0]] = data[1]
+      end
+
+      results
     end
 
     {% for score in ["user_best", "user_recent"] %}
