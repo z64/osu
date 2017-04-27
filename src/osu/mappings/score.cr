@@ -18,4 +18,14 @@ module Osu
       pp:         {type: Float64?, converter: StringConverter::Float64},
     })
   end
+
+  # URL to this score's beatmap
+  def beatmap_url
+    "#{API::BASE_URL}/b/#{beatmap_id}"
+  end
+
+  # URL to the profile of the scorer
+  def profile_url
+    "#{API::BASE_URL}/b/#{user_id}"
+  end
 end
