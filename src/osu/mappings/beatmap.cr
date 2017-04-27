@@ -9,7 +9,7 @@ module Osu
       version:          String,
       md5:              {key: "file_md5", type: String},
       diff_size:        {type: UInt32?, converter: StringConverter::UInt32, getter: false, setter: false},
-      diff_overall:     {type: UInt32?, converter: StringConverter::UInt32, getter: false, setter: false},
+      diff_overall:     {type: Float64?, converter: StringConverter::Float64, getter: false, setter: false},
       diff_approach:    {type: Float64?, converter: StringConverter::Float64, getter: false, setter: false},
       diff_drain:       {type: UInt32?, converter: StringConverter::UInt32, getter: false, setter: false},
       mode:             {type: API::Mode, converter: ModeConverter},
@@ -55,7 +55,7 @@ module Osu
   record(
     Difficulty,
     size : UInt32?,
-    overall : UInt32?,
+    overall : Float64?,
     approach : Float64?,
     drain : UInt32?,
     rating : Float64?
