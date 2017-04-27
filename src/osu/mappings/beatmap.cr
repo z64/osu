@@ -23,6 +23,7 @@ module Osu
       tags:             {type: Array(String), converter: TagsConverter},
       genre_id:         {type: UInt32?, converter: StringConverter::UInt32},
       language_id:      {type: UInt32?, converter: StringConverter::UInt32},
+      favourite_count:  {type: UInt32?, converter: StringConverter::UInt32},
       playcount:        {type: UInt32?, converter: StringConverter::UInt32},
       passcount:        {type: UInt32?, converter: StringConverter::UInt32},
       max_combo:        {type: UInt32?, converter: StringConverter::UInt32},
