@@ -48,7 +48,7 @@ module Osu
 
     # URL to this beatmap's set
     def beatmap_set_url
-      "#{API::BASE_URL}/b/#{beatmapset_id}"
+      "#{API::BASE_URL}/s/#{beatmapset_id}"
     end
   end
 
