@@ -8,9 +8,9 @@ module Osu
       hit_length:       {type: UInt32?, converter: StringConverter::UInt32},
       version:          String,
       md5:              {key: "file_md5", type: String},
-      diff_size:        {type: UInt32?, converter: StringConverter::UInt32, getter: false, setter: false},
-      diff_overall:     {type: Float64?, converter: StringConverter::Float64, getter: false, setter: false},
-      diff_approach:    {type: Float64?, converter: StringConverter::Float64, getter: false, setter: false},
+      diff_size:        {type: Float32?, converter: StringConverter::Float32, getter: false, setter: false},
+      diff_overall:     {type: UInt32?, converter: StringConverter::UInt32, getter: false, setter: false},
+      diff_approach:    {type: Float32?, converter: StringConverter::Float32, getter: false, setter: false},
       diff_drain:       {type: UInt32?, converter: StringConverter::UInt32, getter: false, setter: false},
       mode:             {type: API::Mode, converter: ModeConverter},
       approved_date:    String?,
@@ -27,7 +27,7 @@ module Osu
       playcount:        {type: UInt32?, converter: StringConverter::UInt32},
       passcount:        {type: UInt32?, converter: StringConverter::UInt32},
       max_combo:        {type: UInt32?, converter: StringConverter::UInt32},
-      difficultyrating: {type: Float64?, converter: StringConverter::Float64, getter: false, setter: false},
+      difficultyrating: {type: Float32?, converter: StringConverter::Float32, getter: false, setter: false},
     })
 
     # The difficulty properties of this map, as a Difficulty struct
@@ -55,10 +55,10 @@ module Osu
   # Record representing a beatmap's difficulty properties
   record(
     Difficulty,
-    size : UInt32?,
-    overall : Float64?,
-    approach : Float64?,
+    size : Float32?,
+    overall : UInt32?,
+    approach : Float32?,
     drain : UInt32?,
-    rating : Float64?
+    rating : Float32?
   )
 end
