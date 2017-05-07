@@ -1,4 +1,7 @@
 module Osu
+  # API time formats
+  TIME_FORMAT = Time::Format.new("%F %X")
+
   macro offset_enum_converter(kind, offset)
     # :nodoc:
     struct {{kind.id}}Converter
