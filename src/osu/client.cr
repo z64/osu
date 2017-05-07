@@ -145,5 +145,21 @@ module Osu
 
       BeatmapSet.from_json response
     end
+
+    # Obtain the scores for a specified beatmap
+    def scores(beatmap_id : Int32, user : UserID? = nil, mode : Mode = Mode::Standard, limit : Int32? = nil)
+      response = API.scores(
+        @key,
+        API::RequestParameters{
+          :beatmap => beatmap_id,
+          :user    => user,
+          :mode    => mode,
+          :limit   => limit,
+        }.params
+      )
+
+      objects = [] of Score
+      read_array objects, response, Score
+    end
   end
 end
