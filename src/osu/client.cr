@@ -87,9 +87,10 @@ module Osu
       results
     end
 
-    {% for score in ["user_best", "user_recent"] %}
-      def {{score.id}}(user : UserID, mode : Mode = Mode::Standard, limit : Int32? = nil)
-        response = API.{{score.id}}(
+    {% for score in ["best", "recent"] %}
+      # Obtains a user's {{score}} scores.
+      def user_{{score.id}}(user : UserID, mode : Mode = Mode::Standard, limit : Int32? = nil)
+        response = API.user_{{score.id}}(
           @key,
           API::RequestParameters{
             :user  => user,
