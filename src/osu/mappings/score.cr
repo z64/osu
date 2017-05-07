@@ -13,7 +13,7 @@ module Osu
       perfect:    {type: Bool, converter: PerfectConverter},
       mods:       {key: "enabled_mods", type: API::Mod, converter: ModConverter},
       user_id:    {type: UInt32?, converter: StringConverter::UInt32},
-      date:       String,
+      date:       {type: Time, converter: TIME_FORMAT},
       rank:       {type: UInt32?, converter: StringConverter::UInt32},
       pp:         {type: Float64?, converter: StringConverter::Float64},
     })

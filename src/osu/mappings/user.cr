@@ -59,7 +59,7 @@ module Osu
       display_html:  String,
       beatmap_id:    {type: UInt32?, converter: StringConverter::UInt32},
       beatmapset_id: {type: UInt32?, converter: StringConverter::UInt32},
-      date:          String,
+      date:          {type: Time, converter: TIME_FORMAT},
       epicfactor:    {type: UInt16?, converter: StringConverter::UInt16},
     })
   end
