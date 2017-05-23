@@ -13,7 +13,7 @@ module Osu
       diff_approach:    {type: Float32?, converter: StringConverter::Float32, getter: false, setter: false},
       diff_drain:       {type: UInt32?, converter: StringConverter::UInt32, getter: false, setter: false},
       mode:             {type: API::Mode, converter: ModeConverter},
-      approved_date:    {type: Time?, converter: TIME_FORMAT},
+      approved_date:    {type: Time?, converter: MaybeTimeConverter},
       last_update:      {type: Time, converter: TIME_FORMAT},
       artist:           String,
       title:            String,

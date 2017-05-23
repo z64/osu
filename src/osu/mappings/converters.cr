@@ -2,6 +2,15 @@ module Osu
   # API time formats
   TIME_FORMAT = Time::Format.new("%F %X")
 
+  module MaybeTimeConverter
+    def self.from_json(parser)
+      str = parser.read_string_or_null
+      return unless str
+
+      TIME_FORMAT.parse(str)
+    end
+  end
+
   macro offset_enum_converter(kind, offset)
     # :nodoc:
     struct {{kind.id}}Converter
