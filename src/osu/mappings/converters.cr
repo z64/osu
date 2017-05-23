@@ -13,7 +13,7 @@ module Osu
 
   macro offset_enum_converter(kind, offset)
     # :nodoc:
-    struct {{kind.id}}Converter
+    module {{kind.id}}Converter
       def self.from_json(parser)
         index = Int32.new parser.read_string
 
@@ -27,14 +27,14 @@ module Osu
   offset_enum_converter Approval, 2
 
   # :nodoc:
-  struct TagsConverter
+  module TagsConverter
     def self.from_json(parser)
       parser.read_string.split " "
     end
   end
 
   # :nodoc:
-  struct PerfectConverter
+  module PerfectConverter
     def self.from_json(parser)
       value = parser.read_string
 
